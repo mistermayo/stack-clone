@@ -3,7 +3,9 @@ Rails.application.routes.draw do
     root :to => 'users#index'
 
     resources :sessions
-    
+    resources :user_mailer
+
+
     resources :users do
       resources :questions
         resources :answers

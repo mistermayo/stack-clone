@@ -24,9 +24,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       UserMailer.welcome_email(@user).deliver_later
-
-      format.html { redirect_to(@user, notice: 'User was successfully created.') }
-      format.json { render json: @user, status: :created, location: @user }
       flash[:notice] = "Registered Sucessfully!!"
       redirect_to users_path
     else

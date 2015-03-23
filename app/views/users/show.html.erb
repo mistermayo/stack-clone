@@ -2,6 +2,15 @@
 <h2> <%= @user.email %></h2><% if current_user %>
 
   <% if current_user.id == @user.id %>
+  <h1>Questions</h1>
+  <p>
+    <%= link_to "Add a new question", new_user_question_path %>
+  </p>
+  <ul>
+    <% @questions.each do |question| %>
+    <li><%= link_to question.title, user_question_path(question) %></li>
+    <% end %>
+  </ul>
 
     <p><%= link_to "Delete My Account", user_path(@user),
     :data => {:confirm => "Are you sure???", :method => "delete"} %></p>
