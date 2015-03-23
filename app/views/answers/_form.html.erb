@@ -1,10 +1,7 @@
 <%= render "layouts/errors", :object => @answer %>
 
-<%= bootstrap_form_for @question do |f| %>
-<div class="form-group">
-  <%= f.text_field :description %>
-</div>
-<div class="form-group">
-  <%= f.submit "Submit Your Answer" %>
-</div>
+<%= form_for [@user, @question, @answer] do |f| %>
+<%= f.text_field :description %>
+
+<%= f.submit "Post Your Response" %>
 <% end %>

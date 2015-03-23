@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
 
   validates :name, :email, :presence => true
   validates_uniqueness_of :name
-  validates_length_of :password, minimum: 8
 
   def encrypt_password
     self.password_salt = BCrypt::Engine.generate_salt

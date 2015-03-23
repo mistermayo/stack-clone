@@ -1,5 +1,8 @@
 class QuestionsController < ApplicationController
-
+  def index
+    @questions = Question.all
+  end
+  
   def new
     @user = User.find(params[:user_id])
     @question = Question.new

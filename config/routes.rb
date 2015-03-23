@@ -5,12 +5,13 @@ Rails.application.routes.draw do
     resources :sessions
     resources :user_mailer
 
+    resources :users
 
-    resources :users do
-      resources :questions
-        resources :answers
+    resources :questions do
+      resources :answers
+
+
     end
-
     get "/log-in" => "sessions#new"
     post "/log-in" => "sessions#create"
     get "/log-out" => "sessions#destroy", as: :log_out

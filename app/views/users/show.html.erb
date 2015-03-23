@@ -1,22 +1,32 @@
-<h1> <%= @user.name %> </h1>
-<h2> <%= @user.email %></h2><% if current_user %>
 
-  <% if current_user.id == @user.id %>
-    <h1>Questions</h1>
-    <p>
-      <%= link_to "Add a new question", new_user_question_path %>
-    </p>
+    <h1>Your Questions</h1>
+
     <ul>
-      <% @questions.each do |question| %>
-      <li><%= link_to question.title, user_question_path(question) %></li>
-      <% end %>
-    </ul>
+      <% if @user.questions.any? %>
 
-      <p><%= link_to "Delete My Account", user_path(@user),
-      :data => {:confirm => "Are you sure???", :method => "delete"} %></p>
-      <%= link_to "Post a question", new_user_photo_path(@user) %>
+      <h4>Here are the questions for this user:</h4>
+      <ul>
+        <% @user.questions.each do |question| %>
+        <li>
+          <%= link_to question.description, question_path(@user, question) %> |
+          <%= link_to "Edit", edit_question_path(@user, question) %> |
+          <%= link_to "Delete", question_path(@user, question),
+          :data => {:confirm => "Are you sure?",
+            :method => "delete"} %>
+          </li>
+          <% end %>
+        </ul>
+        <h1>All Questions</h1>
+        <li>
+          <%= link_to question.description, questions_path(@questions) %>
+        </li>
 
-  <% end %>
-    <p><%= link_to "Return to Feed", users_path %></p>
+          <p>There are no questions yet!</p>
 
-<% end %>
+          <%= link_to "Add a new question", new_question_path(@user) %>
+          <p><%= link_to "Edit", edit_user_path(@user) %></p>
+          <p><%= link_to "Delete", user_path(@user),
+          :data => {:confirm => "You sure?",
+            :method => "delete"} %></p>
+            <p><%= link_to "Return to Feed", users_path %></p>
+            <% end %>

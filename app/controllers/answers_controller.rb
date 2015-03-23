@@ -1,6 +1,8 @@
 class AnswersController < ApplicationController
 
+
   def new
+    @user = User.find(params[:user_id])
     @question = Question.find(params[:question_id])
     @answer = Answer.new
   end
@@ -10,7 +12,7 @@ class AnswersController < ApplicationController
     @answer = @question.answers.new(answer_params)
     if @answer.save
       flash[:notice] = "Thanks for your answer."
-      redirect_to question_path(@question)
+      redirect_to user_questions_path(@question)
     else
       flash[:notice] = "Error in answer submission."
       render :new
@@ -23,6 +25,7 @@ class AnswersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:user_id])
     @question = Question.find(params[:question_id])
     @answer = Answer.find(params[:id])
   end
@@ -46,6 +49,6 @@ class AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require(:answer).permit(:description)
+    params.require(:answer).permit(:description, :question_id)
   end
 end
