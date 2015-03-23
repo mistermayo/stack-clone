@@ -1,7 +1,16 @@
 Rails.application.configure do
   Paperclip.options[:command_path] = "/usr/local/bin/"
   config.action_mailer.delivery_method = :letter_opener
-  
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.smtp_settings = {
+    :address        => 'smtp.example.com',
+    :port           => 25,
+    :domain         => 'www.example.com',
+    :authentication => :login,
+    :user_name      => 'www',
+    :password       => 'secret'
+  }
+
 
   # Settings specified here will take precedence over those in config/application.rb.
 

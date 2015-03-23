@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
+  UserMailer.deliver_registration_confirmation(@user)
 
-after_create :send_welcome_message
+  after_create :send_welcome_message
 
   def send_welcome_message
     CustomerMailer.deliver_welcome_message(self)
