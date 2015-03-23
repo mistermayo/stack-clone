@@ -1,7 +1,4 @@
 class UsersController < ApplicationController
-  UserMailer.deliver_registration_confirmation(@user)
-
-  after_create :send_welcome_message
 
   def send_welcome_message
     CustomerMailer.deliver_welcome_message(self)
@@ -26,7 +23,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "Posted Sucessfully!!"
+      UserMailer.welcome_email(@user).deliver_later
+
+      format.html { redirect_to(@user, notice: 'User was successfully created.') }
+      format.json { render json: @user, status: :created, location: @user }
+      flash[:notice] = "Registered Sucessfully!!"
       redirect_to users_path
     else
       render :new
@@ -51,6 +52,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password_hash, :password_salt)
+    params.require(:user).permit(:name, :email, :password)
   end
 end
