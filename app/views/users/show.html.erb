@@ -28,7 +28,11 @@
           <ul>
             <% @questions.each do |question| %>
           <li>
+<<<<<<< HEAD
             <%= link_to question.description, questions_path(@question) %>
+=======
+            <%= link_to question.description, question_path(question) %>
+>>>>>>> d4c124ae07a38bc2e24ad049073ef0a97e12bcd8
           </li>
         <% end %>
           </ul>
@@ -41,4 +45,8 @@
           :data => {:confirm => "You sure?",
             :method => "delete"} %></p>
         <% end %>
+<<<<<<< HEAD
         <p><%= link_to "Return to Homepage", user_path(@user) %></p>
+=======
+        <p><%= link_to "Return to Homepage", users_path(@user) %></p>
+>>>>>>> d4c124ae07a38bc2e24ad049073ef0a97e12bcd8

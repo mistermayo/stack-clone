@@ -45,7 +45,8 @@ class QuestionsController < ApplicationController
       render :edit
     end
   end
-
+  
+private
   def question_params
     params.require(:question).permit(:description, :user_id)
   end

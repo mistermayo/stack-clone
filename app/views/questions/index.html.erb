@@ -12,7 +12,11 @@
       <% @questions.each do |question| %>
 
         <li>
+<<<<<<< HEAD
         <%= link_to question.description, question_path(question) %>
+=======
+        <%= link_to question_path(question) do %><%= question.description %><% end %>
+>>>>>>> d4c124ae07a38bc2e24ad049073ef0a97e12bcd8
         </li>
 
       <% end %>

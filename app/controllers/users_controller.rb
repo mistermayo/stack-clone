@@ -15,6 +15,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @questions = Question.all
+<<<<<<< HEAD
+=======
+
+>>>>>>> d4c124ae07a38bc2e24ad049073ef0a97e12bcd8
   end
 
   def edit
