@@ -1,4 +1,7 @@
 class AnswersController < ApplicationController
+  def send_response_message
+    CustomerMailer.deliver_response_message(self)
+  end
 
 
   def new
@@ -10,6 +13,7 @@ class AnswersController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
     @answer = @question.answers.new(answer_params)
+    UserMailer.response_email(@answer).deliver_now
     if @answer.save
       flash[:notice] = "Thanks for your answer."
       redirect_to user_questions_path(@question)

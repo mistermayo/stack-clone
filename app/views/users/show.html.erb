@@ -1,32 +1,44 @@
+<div class="row">
+  <div class="col-md-12">
+      <h4><%= @user.name %></h4>
+  </div>
+</div>
+  <h1>Your Questions</h1>
 
-    <h1>Your Questions</h1>
+    <% if @user.questions.any? %>
 
-    <ul>
-      <% if @user.questions.any? %>
-
-      <h4>Here are the questions for this user:</h4>
+    <h4>Questions you have asked:</h4>
       <ul>
         <% @user.questions.each do |question| %>
-        <li>
-          <%= link_to question.description, question_path(@user, question) %> |
-          <%= link_to "Edit", edit_question_path(@user, question) %> |
-          <%= link_to "Delete", question_path(@user, question),
-          :data => {:confirm => "Are you sure?",
-            :method => "delete"} %>
-          </li>
-          <% end %>
-        </ul>
-        <h1>All Questions</h1>
-        <li>
-          <%= link_to question.description, questions_path(@questions) %>
-        </li>
+          <li>
+            <%= link_to question.description, question_path(@user, question) %> |
+            <%= link_to "Edit", edit_question_path(@user, question) %> |
+            <%= link_to "Delete", question_path(@user, question),
+            :data => {:confirm => "Are you sure?",
+              :method => "delete"} %>
+            </li>
+        <% end %>
 
+        </ul>
+      <% end %>
+
+        <h1>All Questions</h1>
+
+        <% if @questions.any? %>
+          <ul>
+            <% @questions.each do |question| %>
+          <li>
+            <%= link_to question.description, question_path(question) %>
+          </li>
+        <% end %>
+          </ul>
+        <% else %>
           <p>There are no questions yet!</p>
 
-          <%= link_to "Add a new question", new_question_path(@user) %>
+          <p><%= link_to "Add a new question", new_question_path %></p>
           <p><%= link_to "Edit", edit_user_path(@user) %></p>
           <p><%= link_to "Delete", user_path(@user),
           :data => {:confirm => "You sure?",
             :method => "delete"} %></p>
-            <p><%= link_to "Return to Feed", users_path %></p>
-            <% end %>
+        <% end %>
+        <p><%= link_to "Return to Homepage", users_path(@user) %></p>
