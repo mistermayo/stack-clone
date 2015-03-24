@@ -17,6 +17,7 @@ gem 'bootswatch-rails'
 gem "factory_girl_rails", "~> 4.0"
 gem 'textacular', '~> 3.0'
 gem 'acts_as_votable'
+gem 'ratyrate'
 
 
 group :development, :test do

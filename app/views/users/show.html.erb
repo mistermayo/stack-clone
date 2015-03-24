@@ -28,7 +28,7 @@
           <ul>
             <% @questions.each do |question| %>
           <li>
-            <%= link_to question.description, question_path(question) %>
+            <%= link_to question.description, questions_path(@question) %>
           </li>
         <% end %>
           </ul>
@@ -41,4 +41,4 @@
           :data => {:confirm => "You sure?",
             :method => "delete"} %></p>
         <% end %>
-        <p><%= link_to "Return to Homepage", users_path(@user) %></p>
+        <p><%= link_to "Return to Homepage", user_path(@user) %></p>

@@ -7,11 +7,6 @@ Rails.application.routes.draw do
 
     resources :users
 
-    resources :answers do
-      resources :upvotes, only: [:create, :destroy]
-
-    end
-
     resources :questions do
       resources :answers
 

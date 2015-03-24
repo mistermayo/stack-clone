@@ -12,7 +12,7 @@
       <% @questions.each do |question| %>
 
         <li>
-        <%= link_to question_path(question) do %><%= question.description %><% end %>
+        <%= link_to question.description, question_path(question) %>
         </li>
 
       <% end %>
