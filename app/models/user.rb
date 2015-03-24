@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
 
   has_many :questions
+  has_many :votes
 
 
   validates :name, :email, :presence => true

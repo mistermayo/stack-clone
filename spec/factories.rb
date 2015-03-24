@@ -1,7 +1,9 @@
 FactoryGirl.define do
   factory(:user) do
-    name('example user')
-    email('example@example.com')
-    password('secret')
+    name("siohofh")
+    email("ian@animorphs.gov")
+    password("leet_dewd")
+    password_hash("leet_dewd")
+    password_salt("secret")
   end
 end

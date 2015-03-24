@@ -7,6 +7,8 @@ describe User do
   it { should validate_presence_of :password_salt }
 
   it { should have_many :questions }
+  it { should have_many :votes }
+
 
   it "sends an email when the user is created" do
     user = FactoryGirl.create(:user)

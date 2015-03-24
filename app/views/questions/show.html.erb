@@ -17,13 +17,8 @@
       <% @question.answers.each do |answer| %>
       <li>
         <%= link_to answer.description, question_answers_path(@question, answer) %>
-        <% answer.score %> |
-        @answers.each do |answer|
 
-        <%= link_to "upvote", Like_answer_path(answer), method: :put %>|
-        <%= link_to "downote", Dislike_answer_path(answer), method: :put %>
-
-        </li>
+      </li>
         <% end %>
       </ul>
     </div>
