@@ -16,7 +16,7 @@ gem 'paperclip'
 gem 'bootswatch-rails'
 gem "factory_girl_rails", "~> 4.0"
 gem 'textacular', '~> 3.0'
-
+gem 'acts_as_votable'
 
 
 group :development, :test do

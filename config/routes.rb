@@ -7,6 +7,13 @@ Rails.application.routes.draw do
 
     resources :users
 
+    resources :answers do
+      member do
+        put "Like", to: "answers#upvote"
+        put "Dislike", to: "answers#downvote"
+      end
+    end
+
     resources :questions do
       resources :answers
 

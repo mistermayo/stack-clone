@@ -1,17 +1,24 @@
 
-<% if @questions.any? %>
+<div class="row">
+  <div class="col-md-12">
+    <h1>Tucker's Overflow Questions</h1>
+  </div>
+</div>
 
-  <ul class="list-unstyled">
+  <% if @questions.any? %>
 
-    <% @questions.each do |question| %>
+    <ul>
 
-      <li>
-      </i> <%= link_to question_path(question) do %><%= question.description %><% end %>
-      </li>
+      <% @questions.each do |question| %>
 
-    <% end %>
+        <li>
+        <%= link_to question_path(question) do %><%= question.description %><% end %>
+        </li>
 
-  </ul>
-<% end %>
+      <% end %>
 
-<p><%= link_to "Add a new question", new_question_path %></p>
+    </ul>
+  <% end %>
+
+    <p><%= link_to "Add a new question", new_question_path %></p>
+    <p><%= link_to "Return to Homepage", users_path(@user) %></p>

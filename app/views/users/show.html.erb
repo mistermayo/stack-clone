@@ -7,7 +7,7 @@
 
     <% if @user.questions.any? %>
 
-    <h4>Here are the questions for this user:</h4>
+    <h4>Questions you have asked:</h4>
       <ul>
         <% @user.questions.each do |question| %>
           <li>
@@ -40,5 +40,5 @@
           <p><%= link_to "Delete", user_path(@user),
           :data => {:confirm => "You sure?",
             :method => "delete"} %></p>
-          <p><%= link_to "Return to Feed", user_path %></p>
         <% end %>
+        <p><%= link_to "Return to Homepage", users_path(@user) %></p>
