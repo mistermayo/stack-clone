@@ -8,15 +8,15 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = @user.questions.new(question_params)
+    @question = Question.new(question_params)
+    @question.user_id = current_user.id
     if @question.save
-      flash[:notice] = "Thanks for your question."
-      redirect_to user_path(@user)
+      redirect_to questions_path
     else
-      flash[:notice] = "Error in question submission."
       render :new
     end
   end
+
 
   def show
     @questions = Question.all
@@ -33,18 +33,19 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.destroy
     flash[:notice] = "Your question has been removed."
-    redirect_to user_path(@user)
+    redirect_to questions_path
   end
 
   def update
     @question = Question.find(params[:id])
-    if @question.update(params[:question])
-      redirect_to user_path(@question.user)
+    if @question.update(question_params)
+      redirect_to questions_path
     else
       render :edit
     end
   end
-
+  
+private
   def question_params
     params.require(:question).permit(:description, :user_id)
   end

@@ -17,7 +17,7 @@
       <% @question.answers.each do |answer| %>
       <li>
         <%= link_to answer.description, question_answers_path(@question, answer) %>
-    <% end %>
+          <% end %>
   </div>
 </div>
 
@@ -37,4 +37,4 @@
       <p><%= link_to "Return to questions", questions_path %></p>
       </div>
     </div>
-<p><%= link_to "Return to Homepage", users_path(@user) %></p>
+      <p><%= link_to "Return to Homepage", users_path(@user) %></p>
