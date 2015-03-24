@@ -2,53 +2,50 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.all
   end
-  
+
   def new
-    @user = User.find(params[:user_id])
     @question = Question.new
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @question = @user.questions.new(question_params)
+    @question = Question.new(question_params)
+    @question.user_id = current_user.id
     if @question.save
-      flash[:notice] = "Thanks for your question."
-      redirect_to user_path(@user)
+      redirect_to questions_path
     else
-      flash[:notice] = "Error in question submission."
       render :new
     end
   end
 
+
   def show
-    @user = User.find(params[:user_id])
+    @questions = Question.all
     @question = Question.find(params[:id])
+    @user = User.find(@question.user_id)
+    render :show
   end
 
   def edit
-    @user = User.find(params[:user_id])
     @question = Question.find(params[:id])
   end
 
   def destroy
-    @user = User.find(params[:user_id])
     @question = Question.find(params[:id])
     @question.destroy
     flash[:notice] = "Your question has been removed."
-    redirect_to user_path(@user)
+    redirect_to questions_path
   end
 
   def update
-    @user = User.find(params[:user_id])
     @question = Question.find(params[:id])
-    if @question.update(params[:question])
-      redirect_to user_path(@question.user)
+    if @question.update(question_params)
+      redirect_to questions_path
     else
       render :edit
     end
   end
 
   def question_params
-    params.require(:question).permit(:description)
+    params.require(:question).permit(:description, :user_id)
   end
 end
